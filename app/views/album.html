@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="col-sm-4 image-col">
+		<img ng-src="{{album.images[0].url}}" width="100%" />
+	</div>
+	<div class="col-sm-8">
+		<h1>{{album.name}}</h1>
+		<p><a ng-href="#/artist/{{album.artists[0].uri}}">{{album.artists[0].name}}</a></p>
+		<ol>
+			<li  ng-repeat="track in album.tracks.items">
+
+				
+				<span class="glyphicon glyphicon-ok-sign pull-right" ng-show="checkInQueue('{{track.uri}}')"></span>
+				<span class="glyphicon glyphicon-plus-sign pull-right" ng-click="addTrack('{{track.uri}}')" ng-show="!checkInQueue('{{track.uri}}')"></span>
+				<h4 class="media-heading">{{track.name}}</h4>
+			</li>
+		</ol>
+	</div>
+</div>

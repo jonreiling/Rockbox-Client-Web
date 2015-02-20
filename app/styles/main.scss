@@ -1,0 +1,81 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+
+
+/* Space out content a bit */
+body {
+  padding-top: 0px;
+  padding-bottom: 20px;
+}
+
+.glyphicon {
+  font-size:20px;
+  cursor: pointer;
+}
+
+.glyphicon:hover {
+  color: #999;
+}
+
+.glyphicon-ok-sign {
+  color: green;
+}
+
+.player h4 {
+  margin-top:10px;
+  margin-bottom:0px;
+}
+.image-col {
+  padding-top:15px;
+}
+.search-container {
+  background-color:#111;
+  padding:10px;
+}
+.display-table{
+    display: table;
+    table-layout: fixed;
+    height:80px;
+    background-color:#eee;
+}
+
+.track-display {
+  padding-bottom:10px;
+}
+
+ol {
+  padding-left:20px;
+  list-style: decimal;
+}
+
+li {
+padding-bottom:4px;
+}
+
+.display-cell{
+    display: table-cell;
+    vertical-align: middle;
+    float: none;
+}
+
+
+#volume {
+  width:150px;
+  margin-left:4px;
+  margin-right:4px;
+  display:none;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+#volume {
+  display:inline-block;
+
+}
+ }
