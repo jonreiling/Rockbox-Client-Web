@@ -8,6 +8,8 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -21,22 +23,30 @@
 
     <!-- Add your site or application content here -->
 
-
 <div ng-controller="PlayerCtrl" class="player">
   <div class="container-fluid">
     <div class="row display-table">
-     <div class="col-xs-4 display-cell">
+     <div class="col-xs-3 display-cell">
       <span class="glyphicon" ng-class="{'glyphicon-play':!playing, 'glyphicon-pause':playing}" ng-click="togglePlayPause()"></span>
       <span class="glyphicon glyphicon-forward" ng-click="skip()"></span>
+      <span class="glyphicon glyphicon-flash" ng-click="toggleRadio()" alt="Radio mode" ng-class="{'off':!radio}"></span>
       </div>
-    <div class="col-xs-4 text-center display-cell"><h4>{{track.name}}</h4><p><a ng-href="#/artist/{{track.artists[0].link}}">{{track.artists[0].name}}</a> - <a ng-href="#/album/{{track.album.link}}">{{track.album.name}}</a></p></div>
-    <div class="col-xs-4 text-right display-cell">
+    <div class="col-xs-6 text-center display-cell">
+      <h4><span class="glyphicon glyphicon-flash" ng-show="track.radioPlay"></span> {{track.name}}</h4>
+      <p><a ng-href="#/artist/{{track.artists[0].link}}">{{track.artists[0].name}}</a> - <a ng-href="#/album/{{track.album.link}}">{{track.album.name}}</a></p>
+
+    </div>
+
+    <div class="col-xs-3 text-right display-cell">
+
         <span class="glyphicon glyphicon-volume-down" ng-click="volumeDown()"></span>
         <input type="range" name="volume" id="volume" ng-change="updateVolume()" ng-model="volume" min="0" max="100">
         <span class="glyphicon glyphicon-volume-up" ng-click="volumeUp()"></span>
-      </div>
+    </div>
+
     </div>
   </div>
+
 
     <div class="container-fluid search-container">
 
@@ -44,10 +54,12 @@
       <input type="text" class="form-control" ng-keyup="keyPress($event.keyCode)" ng-model="searchterms" placeholder="Search for..." auto-focus spellcheck="false">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" ng-click="search()">Go!</button>
+
       </span>
     </div><!-- /input-group -->
   </div>
 </div>
+
 
     <div class="container-fluid">
       <div ng-view=""></div>
@@ -71,6 +83,9 @@
     <script src="bower_components/json3/lib/json3.js"></script>
     <![endif]-->
     <!-- endbuild -->
+    <!--<script src="http://@@socket-server:@@socket-server-port/socket.io/socket.io.js"></script>-->
+    <!--<script src="http://rockbox-reiling.rhcloud.com/socket.io/socket.io.js"></script>-->
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -85,9 +100,13 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-socket-io/socket.js"></script>
     <script src="bower_components/angular-spotify/dist/angular-spotify.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+    <script src="bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-    <script src="http://rockbox-reiling.rhcloud.com/socket.io/socket.io.js"></script>
+
+    
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>

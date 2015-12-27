@@ -16,7 +16,7 @@ angular.module('rockboxWebClientApp')
 		});
 
   		$scope.addTrack = function(id) {
-  			socket.emit('play',id);
+  			socket.emit('add',id);
   		}
 
       $scope.checkInQueue = function(id) {

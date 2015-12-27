@@ -14,11 +14,14 @@ angular.module('rockboxWebClientApp')
     var volumeSlideEngaged = true;
 
   	$scope.playing = false;
+    $scope.radio = true;
   	$scope.volume = 20;
     $rootScope.queue = "";
 
-    $scope.$on('socket:trackUpdate', function (ev, data) {
+    $scope.$on('socket:queueUpdate', function (ev, data) {
 
+        console.log(data);
+        data = data.queue;
         if ( data == null ) data = [];
     	$scope.track = ( data.length != 0 ) ? data[0] : null;
         
@@ -39,11 +42,24 @@ angular.module('rockboxWebClientApp')
 
     $scope.$on('socket:stateUpdate', function (ev, data) {
     	$scope.playing = data.playing;
+        $scope.radio = data.radio;
     });
 
     $scope.$on('socket:volumeUpdate',function(ev, data) {
         $scope.volume = data.volume;
     });
+
+    $scope.$on('socket:passthroughConnectionUpdate',function(ev, data) {
+        if (!data) {
+            alert('disconnected');
+        }
+    });
+
+    $scope.toggleRadio = function() {
+        $scope.radio = !$scope.radio;
+        socket.emit('setRadio',$scope.radio);
+
+    };
 
     $scope.togglePlayPause = function() {
     	socket.emit('pause');
@@ -54,7 +70,7 @@ angular.module('rockboxWebClientApp')
     }
 
     $scope.test = function() {
-    	socket.emit('play','spotify:track:5ER4CebTR7M7JEV9XE5quI')
+    	socket.emit('add','spotify:track:5ER4CebTR7M7JEV9XE5quI')
     }
 
     $scope.search = function() {
@@ -72,7 +88,7 @@ angular.module('rockboxWebClientApp')
         timeoutInterval = $timeout(function() {
             socket.emit('setVolume',$scope.volume);
 
-        }, 100);
+        }, 400);
     }
 
     $scope.volumeDown = function() {

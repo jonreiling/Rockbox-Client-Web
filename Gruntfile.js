@@ -15,6 +15,10 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  //Set websocket server variable
+  var socketServer = grunt.option('socket-server') || 'localhost';
+  var socketServerPort = grunt.option('socket-server-port') || '3000';
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -26,6 +30,28 @@ module.exports = function (grunt) {
 
     // Project settings
     yeoman: appConfig,
+
+    replace: {
+      dist: {
+        options: {
+          patterns: [
+            {
+              match: 'socket-server',
+              replacement: socketServer
+            },
+            {
+              match: 'socket-server-port',
+              replacement: socketServerPort
+            }            
+          ]
+        },
+        files: [
+          {expand: true, flatten: true, src: ['<%= yeoman.app %>/index.html'], dest: '.tmp/'},
+          {src: '<%= yeoman.app %>/scripts/app.js', dest: '.tmp/scripts/app.js'}
+        ]
+      }
+
+    },
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -61,12 +87,13 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
+
     },
 
     // The actual grunt server settings
     connect: {
       options: {
-        port: 9000,
+        port: 9001,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
         livereload: 35729
@@ -384,7 +411,9 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
+    },
+
+
   });
 
 
@@ -398,10 +427,13 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'autoprefixer',
+//      'server-replace',
       'connect:livereload',
       'watch'
     ]);
   });
+
+  grunt.registerTask('server-replace', 'replace');
 
   grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
@@ -438,4 +470,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+
 };

@@ -20,6 +20,15 @@ body {
   color: #999;
 }
 
+.glyphicon.off {
+  color:#ccc;
+}
+
+.glyphicon.off:hover {
+  color:#ccc;
+}
+
+
 .glyphicon-ok-sign {
   color: green;
 }
@@ -27,6 +36,16 @@ body {
 .player h4 {
   margin-top:10px;
   margin-bottom:0px;
+
+  .glyphicon {
+    font-size: 12px;
+    cursor: auto;
+  }
+
+  .glyphicon:hover {
+    color:#000;
+  }
+
 }
 .image-col {
   padding-top:15px;
@@ -46,6 +65,11 @@ body {
   padding-bottom:10px;
 }
 
+.radio-cell {
+  text-align:center; 
+    background-color:#eee;
+}
+
 ol {
   padding-left:20px;
   list-style: decimal;
@@ -63,7 +87,7 @@ padding-bottom:4px;
 
 
 #volume {
-  width:150px;
+  width:100px;
   margin-left:4px;
   margin-right:4px;
   display:none;

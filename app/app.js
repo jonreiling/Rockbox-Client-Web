@@ -17,23 +17,22 @@ angular
     'ngSanitize',
     'ngTouch',
     'btford.socket-io',
-    'spotify'
+    'spotify',
+    'frapontillo.bootstrap-switch'
   ])
   .factory('socket', function (socketFactory) {
 
       var mySocket = socketFactory({
-//        ioSocket: io.connect('@@socket-server:@@socket-server-port/rockbox-client')
-//          ioSocket: io.connect('rockbox-reiling.rhcloud.com:8000/rockbox-client')
-          ioSocket: io.connect('localhost:3000/rockbox-client')
+//        ioSocket: io.connect('localhost:3000/rockbox-client')
+        ioSocket: io.connect('rockbox-reiling.rhcloud.com:8000/rockbox-client')
       });
 
-      mySocket.forward('queueUpdate');
+      mySocket.forward('trackUpdate');
       mySocket.forward('stateUpdate');
       mySocket.forward('volumeUpdate');
-      mySocket.forward('connectionUpdate');
 
       return mySocket;
-  })
+  })  
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
