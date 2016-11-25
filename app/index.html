@@ -33,7 +33,7 @@
       </div>
     <div class="col-xs-6 text-center display-cell">
       <h4><span class="glyphicon glyphicon-flash" ng-show="track.radioPlay"></span> {{track.name}}</h4>
-      <p><a ng-href="#/artist/{{track.artists[0].link}}">{{track.artists[0].name}}</a> - <a ng-href="#/album/{{track.album.link}}">{{track.album.name}}</a></p>
+      <p><a ng-href="#/artist/{{track.artists[0].id}}">{{track.artists[0].name}}</a> - <a ng-href="#/album/{{track.album.id}}">{{track.album.name}}</a></p>
 
     </div>
 
@@ -85,7 +85,8 @@
     <!-- endbuild -->
     <!--<script src="http://@@socket-server:@@socket-server-port/socket.io/socket.io.js"></script>-->
     <!--<script src="http://rockbox-reiling.rhcloud.com/socket.io/socket.io.js"></script>-->
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="http://passthrough-reiling.rhcloud.com/socket.io/socket.io.js"></script>
+<!--    <script src="http://localhost:3000/socket.io/socket.io.js"></script> -->
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->

@@ -20,7 +20,7 @@ angular.module('rockboxWebClientApp')
 
     $scope.$on('socket:queueUpdate', function (ev, data) {
 
-        console.log(data);
+//        console.log(data);
         data = data.queue;
         if ( data == null ) data = [];
     	$scope.track = ( data.length != 0 ) ? data[0] : null;
@@ -34,9 +34,8 @@ angular.module('rockboxWebClientApp')
         //Build the queue string that we check against later.
         $rootScope.queue = "";
         for ( var i = 0 ; i < data.length ; i ++ ) {
-            $rootScope.queue += data[i].link+",";
+            $rootScope.queue += data[i].uri+",";
         }
-
 
     });
 

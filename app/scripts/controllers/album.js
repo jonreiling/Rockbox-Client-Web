@@ -10,8 +10,8 @@
 angular.module('rockboxWebClientApp')
   .controller('AlbumCtrl', function ($scope,$routeParams,Spotify,socket,$rootScope) {
 	Spotify.getAlbum($routeParams.id,{'limit':50}).then(function (data) {
-  		$scope.album = data;
-  		
+
+      $scope.album = data;
 	});
 
 	$scope.addTrack = function(id) {
