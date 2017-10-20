@@ -1,0 +1,232 @@
+#disconnected {
+  width: 100%;
+  font-family: "bentonsansbold";   
+  font-size: .8em;  
+  letter-spacing: .1em;  
+  background-color: black;
+  color:white;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 10px;
+  display: none;
+}
+
+#player {
+  background-color: white;
+  margin-bottom: 50px;
+  padding-top: 50px;
+
+}
+
+.queue-button-padding {
+
+  margin-top: 20px;
+  margin-bottom: 00px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  cursor: pointer;
+  display: inline-block;
+}
+
+.queue-button-padding:hover {
+  opacity: .3;
+}
+
+.queue-button {
+  height: 4px;
+  width: 20px;
+  border-top:1px solid #ccc;
+  border-bottom:1px solid #ccc;
+
+
+}
+
+[v-cloak] { display: none; }
+
+.playpause {
+  height:26px;
+  width: 18px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left center;
+
+  background-image: url('/static/pause.png');
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: top;
+
+  margin-top:5px;
+}
+
+.playpause.paused {
+  background-image: url('/static/play.png');
+
+}
+
+#player img {
+
+}
+
+#player img:hover, .playpause:hover {
+  opacity: .3;
+}
+
+
+.track-name {
+  font-family: "bentonsansbold";   
+  font-size: .8em;  
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: black;
+}
+
+.track-info {
+  font-family: "bentonsansbook";   
+  font-size: .8em;  
+}
+
+.track-info a, a .track-info {
+    color: #999 !important;
+}
+
+.search-input {
+
+  font-family: "bentonsansbook";   
+  font-size: .8em;  
+
+  border: none;
+  border-bottom: 1px solid black;
+  border-radius: 0px;
+
+  padding-left: 0px;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.autoplayed::after {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 18px;
+    background: transparent url('/static/radio.png') no-repeat;
+    background-size: contain;
+    background-position: 0px 1px;
+  vertical-align:top;
+  margin-left: 4px;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+    width: 70px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 70px;
+    height: 1px;
+    background: #999;
+    border: none;
+    border-radius: 0px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 3px solid black;
+    height: 9px;
+    width: 9px;
+    border-radius: 5px;
+    background: #fff;
+    margin-top: -4px;
+    cursor:pointer;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+    border-color: #999;
+
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+
+body {
+  background-color: #f7f7f7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-bottom: 80px;
+}
+
+h3 {
+  font-family: "bentonsansbold";
+  margin-bottom: 50px
+}
+
+@media (max-width:768px) {
+
+  input[type=range]{
+      -webkit-appearance: none;
+      width: 120px;
+  }
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 6px solid black;
+    height: 15px;
+    width: 15px;
+    border-radius: 8px;
+    margin-top: -7px;
+}  
+
+  input[type=range]::-webkit-slider-runnable-track {
+      width: 120px;
+  }
+
+  #controls {
+    margin-bottom: 40px;
+  }
+
+  #now-playing {
+    margin-bottom: 30px;
+  }
+
+  .queue-button-padding {
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+
+
+}
+
+@media (min-width: 992px) {
+
+  input[type=range]{
+      -webkit-appearance: none;
+      width: 120px;
+  }
+
+  input[type=range]::-webkit-slider-runnable-track {
+      width: 120px;
+  }
+}
+
+
+
+@media (min-width: 1200px) {
+
+
+}
+
+@media (min-width: 1440px) {
+
+
+}
+
+

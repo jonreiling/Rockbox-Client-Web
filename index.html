@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=no">
+
+
+    <title>R O C K | B O X</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/styles/fonts.css">
+  <link rel="stylesheet" href="/static/styles/main.css">
+  </head>
+  <body>
+    <div id="disconnected">Connecting to Rockbox...</div>
+    <div id="player" class="container-fluid" v-cloak>
+     <div class="row">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3" id="controls">
+            <div>
+              <div class="playpause"  v-bind:class="{ paused: !playing }" v-on:click="togglePlayPause"></div>
+              <span v-on:click="skip"><img src="/static/skip.png" height="26" style="margin-top:5px;cursor:pointer;vertical-align:top" /></span>
+              <span class="float-xs-right float-md-none" style="padding-left:6px"><input type="range" name="volume" id="volume" v-on:change="updateVolume" min="0" max="100" /></span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6 text-md-center" id="now-playing">
+            <div v-if="track">
+              <div class="track-name" v-bind:class="{ autoplayed: track.radio }">{{ track.name }}</div>
+              <div class="track-info">
+                <router-link :to="{ name: 'artist', params: { id: track.artist.id }}">{{ track.artist.name }}</router-link>&nbsp;-&nbsp;<router-link :to="{ name: 'album', params: { id: track.album.id }}">{{ track.album.name }}</router-link>
+              </div>
+            </div>
+            <div v-else>
+              <div class="track-name">-</div>
+              <div class="track-info"></div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3 text-md-right" id="search">
+           <form action="whatever" v-on:submit.prevent> <input type="search" v-model="searchterm" class="search-input" v-on:keyup.enter="search" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+           </form>
+          </div>
+        </div>
+        <div class="row" style="padding-top:30px" v-if="showQueue">
+          <div class="col-xs-12 col-md-6 offset-md-3 text-md-center">
+
+            <div v-if="queue.length == 0"><span class="track-info" style="color:#999">The queue is empty</span></div>
+            <div v-for="track in queue">
+
+              <div class="track" v-on:click="add(track.id)" v-bind:data-id="track.id">
+                  <span class="track-name">{{track.name}}</span>
+                  <span class="track-info"><a href="#" v-on:click.prevent.stop="go('artist',track.artist.id)">{{track.artist.name}}</a>,
+                  <a href="#" v-on:click.prevent.stop="go('album',track.album.id)">{{track.album.name}}</a></span>
+            </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row text-md-center">
+          <div class="col-xs-12">
+            <div class="queue-button-padding" v-on:click="showQueue = !showQueue"><div class="queue-button"></div></div>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+
+    <div id="app" v-cloak>
+      <div class="container">
+
+      <router-view class="view"></router-view>
+
+    </div>
+
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
