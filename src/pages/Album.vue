@@ -40,9 +40,9 @@ export default {
   methods: {
     fetchData () {
       var id = this.$route.params.id
-      Vue.http.get(this.$root.server + '/api/v1/browse/album/' + id).then((response) => {
+      Vue.http.jsonp(this.$root.server + '/api/v1/browse/album/' + id, {'jsonp': 'callback'}).then((response) => {
         // success callback
-        this.album = response.body.results
+        this.album = response.body
       }, (response) => {
         // error callback
         console.log(response)

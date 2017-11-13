@@ -60,11 +60,11 @@ export default {
       this.albums = []
       this.artists = []
       var searchterm = this.$route.params.searchterm
-      Vue.http.get(this.$root.server + '/api/v1/search/' + searchterm).then((response) => {
+      Vue.http.jsonp(this.$root.server + '/api/v1/search/' + searchterm, {'jsonp': 'callback'}).then((response) => {
         // success callback
-        this.tracks = response.body.results.tracks
-        this.albums = response.body.results.albums
-        this.artists = response.body.results.artists
+        this.tracks = response.body.tracks
+        this.albums = response.body.albums
+        this.artists = response.body.artists
       }, (response) => {
         // error callback
         console.log(response)

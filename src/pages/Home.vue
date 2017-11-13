@@ -34,10 +34,10 @@ export default {
   },
   methods: {
     fetchData () {
-      Vue.http.get(this.$root.server + '/api/v1/browse/new-releases/').then((response) => {
+      Vue.http.jsonp(this.$root.server + '/api/v1/browse/new-releases/', {'jsonp': 'callback'}).then((response) => {
         // success callback
-        console.log(response.body.results)
-        this.albums = response.body.results
+        console.log(response.body)
+        this.albums = response.body
       }, (response) => {
         // error callback
         console.log(response)

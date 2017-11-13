@@ -52,10 +52,10 @@ export default {
   methods: {
     fetchData () {
       var id = this.$route.params.id
-      Vue.http.get(this.$root.server + '/api/v1/browse/artist/' + id).then((response) => {
+      Vue.http.jsonp(this.$root.server + '/api/v1/browse/artist/' + id, {'jsonp': 'callback'}).then((response) => {
         // success callback
-        console.log(response.body.results)
-        this.artist = response.body.results
+        console.log(response.body)
+        this.artist = response.body
       }, (response) => {
         // error callback
         console.log(response)
